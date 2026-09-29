@@ -14,7 +14,7 @@
 # ------------------------------------------------------------------------------
 type: markdown
 content: >
-  <table width="100%" border="0" cellpadding="0" cellspacing="0" style="width: 100%; height: 100%; border-collapse: collapse; background: transparent; margin: 0; padding: 0; box-sizing: border-box;"><tr><td width="80" align="center" valign="middle" style="vertical-align: middle; width: 80px; min-width: 80px; max-width: 80px; padding: 0 14px 0 0; box-sizing: border-box;"><img src="{{ state_attr('sensor.jellyha_latest_movie', 'poster_url') }}" width="76" height="114" alt="Poster" style="width: 76px; max-width: 76px; height: 114px; max-height: 114px; object-fit: cover; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.85); border: 1.5px solid rgba(255,255,255,0.35); display: block;"></td><td valign="middle" style="vertical-align: middle; padding: 0; box-sizing: border-box; overflow-wrap: break-word;"><h1 style="margin: 0 0 4px 0; font-size: clamp(1rem, 2.5vw, 1.35rem); font-weight: 800; line-height: 1.15; color: #ffffff; text-shadow: 0 2px 10px rgba(0,0,0,0.95); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ state_attr('sensor.jellyha_latest_movie', 'title') }}</h1><div style="margin: 0 0 6px 0; display: flex; align-items: center; flex-wrap: wrap; gap: 6px;"><span class="badge-primary" style="background: var(--primary-color); color: white; font-size: 0.7rem; font-weight: 700; padding: 2px 7px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.5); margin-right: 6px;">{{ state_attr('sensor.jellyha_latest_movie', 'resolution') }}</span>&nbsp;<span class="badge-text" style="color: #ffffff; text-shadow: 0 1px 4px rgba(0,0,0,0.9); font-size: 0.78rem; margin-right: 6px;">{{ state_attr('sensor.jellyha_latest_movie', 'year') }} •</span>&nbsp;<span class="badge-rating" style="color: #f5a623; text-shadow: 0 1px 4px rgba(0,0,0,0.9); font-size: 0.78rem; font-weight: 700;">★ {{ state_attr('sensor.jellyha_latest_movie', 'rating') }}</span></div><p style="margin: 0; line-height: 1.35; font-size: 0.82rem; color: rgba(255,255,255,0.9); text-shadow: 0 2px 6px rgba(0,0,0,0.95); overflow-wrap: break-word; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">{{ state_attr('sensor.jellyha_latest_movie', 'overview') }}</p></td></tr></table>
+  <table width="100%" border="0" cellpadding="0" cellspacing="0" style="width: 100%; height: 100%; border-collapse: collapse; background: transparent; margin: 0; padding: 0; box-sizing: border-box;"><tr><td width="80" align="center" valign="middle" style="vertical-align: middle; width: 80px; min-width: 80px; max-width: 80px; padding: 0 14px 0 0; box-sizing: border-box;"><img src="{{ state_attr('sensor.jellyha_latest_movie', 'poster_url') }}" width="76" height="114" alt="Poster" style="width: 76px; max-width: 76px; height: 114px; max-height: 114px; object-fit: cover; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.85); border: 1.5px solid rgba(255,255,255,0.35); display: block;"></td><td valign="middle" style="vertical-align: middle; padding: 0; box-sizing: border-box; overflow-wrap: break-word;"><h1 style="margin: 0 0 4px 0; font-size: clamp(1rem, 2.5vw, 1.35rem); font-weight: 800; line-height: 1.15; color: #ffffff; text-shadow: 0 2px 10px rgba(0,0,0,0.95); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ state_attr('sensor.jellyha_latest_movie', 'title') }}</h1><div style="margin: 0 0 6px 0; line-height: 1.2;">{%- if state_attr('sensor.jellyha_latest_movie', 'resolution') -%}<b class="badge-primary" style="background: var(--primary-color, #03a9f4); color: white; font-size: 0.7rem; font-weight: 700; padding: 2px 6px; border-radius: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.4); line-height: 1.2; display: inline-block; margin-right: 8px; margin-bottom: 4px;">{{ state_attr('sensor.jellyha_latest_movie', 'resolution') }}</b>{%- endif -%}{%- if state_attr('sensor.jellyha_latest_movie', 'year') -%}<span class="meta-year" style="color: #ffffff; text-shadow: 0 1px 4px rgba(0,0,0,0.9); font-size: 0.8rem; font-weight: 600; line-height: 1.2; display: inline-block; margin-right: 6px; margin-bottom: 4px;">{{ state_attr('sensor.jellyha_latest_movie', 'year') }}</span>{%- endif -%}{%- if state_attr('sensor.jellyha_latest_movie', 'year') and ((state_attr('sensor.jellyha_latest_movie', 'rating') and (state_attr('sensor.jellyha_latest_movie', 'rating') | float(0)) > 0) or (state_attr('sensor.jellyha_latest_movie', 'genres') and (state_attr('sensor.jellyha_latest_movie', 'genres') | length) > 0)) -%}<i class="meta-dot" style="color: rgba(255,255,255,0.45); font-size: 0.7rem; font-style: normal; line-height: 1; display: inline-block; margin-right: 6px; margin-bottom: 4px;">•</i>{%- endif -%}{%- if state_attr('sensor.jellyha_latest_movie', 'rating') and (state_attr('sensor.jellyha_latest_movie', 'rating') | float(0)) > 0 -%}<mark class="badge-rating" style="background: rgba(245,158,11,0.25); border: 1px solid rgba(245,158,11,0.45); color: #fbbf24; font-size: 0.72rem; font-weight: 700; padding: 1px 6px; border-radius: 4px; line-height: 1.2; display: inline-flex; align-items: center; margin-right: 8px; margin-bottom: 4px;">★ {{ '%.1f' % (state_attr('sensor.jellyha_latest_movie', 'rating') | float) }}</mark>{%- endif -%}{%- for g in (state_attr('sensor.jellyha_latest_movie', 'genres') or [])[:3] -%}<em class="badge-genre" style="background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.18); color: rgba(255,255,255,0.92); font-size: 0.72rem; font-weight: 500; font-style: normal; padding: 1px 6px; border-radius: 4px; line-height: 1.2; text-shadow: 0 1px 2px rgba(0,0,0,0.6); display: inline-block; white-space: nowrap; margin-right: 8px; margin-bottom: 4px;">{{ g }}</em>{%- endfor -%}</div><p style="margin: 0; line-height: 1.35; font-size: 0.82rem; color: rgba(255,255,255,0.9); text-shadow: 0 2px 6px rgba(0,0,0,0.95); overflow-wrap: break-word; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">{{ state_attr('sensor.jellyha_latest_movie', 'overview') }}</p></td></tr></table>
 text_only: true
 card_mod:
   style:
@@ -90,37 +90,96 @@ card_mod:
         border: 1.5px solid rgba(255, 255, 255, 0.35) !important;
         display: block !important;
       }
-      .badge-primary {
+      b, .badge-primary {
         background: var(--primary-color, #03a9f4) !important;
         color: white !important;
         font-size: 0.7rem !important;
         font-weight: 700 !important;
-        padding: 2px 7px !important;
-        border-radius: 10px !important;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5) !important;
+        padding: 2px 6px !important;
+        border-radius: 4px !important;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4) !important;
         display: inline-block !important;
+        line-height: 1.2 !important;
+        font-family: inherit !important;
+        margin-right: 8px !important;
+        margin-bottom: 4px !important;
       }
-      .badge-text {
+      kbd, .badge-subtle {
+        background: rgba(255, 255, 255, 0.18) !important;
+        border: 1px solid rgba(255, 255, 255, 0.25) !important;
+        color: #ffffff !important;
+        font-size: 0.7rem !important;
+        font-weight: 700 !important;
+        padding: 2px 6px !important;
+        border-radius: 4px !important;
+        display: inline-block !important;
+        line-height: 1.2 !important;
+        font-family: inherit !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+        margin-right: 8px !important;
+        margin-bottom: 4px !important;
+      }
+      span, .meta-year {
         color: #ffffff !important;
         text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9) !important;
-        font-size: 0.78rem !important;
+        font-size: 0.8rem !important;
+        font-weight: 600 !important;
+        display: inline-block !important;
+        line-height: 1.2 !important;
+        margin-right: 6px !important;
+        margin-bottom: 4px !important;
       }
-      .badge-rating {
-        color: #f5a623 !important;
-        text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9) !important;
-        font-size: 0.78rem !important;
+      i, .meta-dot {
+        color: rgba(255, 255, 255, 0.45) !important;
+        font-size: 0.7rem !important;
+        font-style: normal !important;
+        display: inline-block !important;
+        line-height: 1 !important;
+        margin-right: 6px !important;
+        margin-bottom: 4px !important;
+      }
+      mark, .badge-rating {
+        background: rgba(245, 158, 11, 0.25) !important;
+        border: 1px solid rgba(245, 158, 11, 0.45) !important;
+        color: #fbbf24 !important;
+        font-size: 0.72rem !important;
         font-weight: 700 !important;
+        padding: 1px 6px !important;
+        border-radius: 4px !important;
+        line-height: 1.2 !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        text-shadow: none !important;
+        margin-right: 8px !important;
+        margin-bottom: 4px !important;
+      }
+      em, .badge-genre {
+        background: rgba(255, 255, 255, 0.12) !important;
+        border: 1px solid rgba(255, 255, 255, 0.18) !important;
+        color: rgba(255, 255, 255, 0.92) !important;
+        font-size: 0.72rem !important;
+        font-weight: 500 !important;
+        font-style: normal !important;
+        padding: 1px 6px !important;
+        border-radius: 4px !important;
+        line-height: 1.2 !important;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6) !important;
+        display: inline-block !important;
+        white-space: nowrap !important;
+        margin-right: 8px !important;
+        margin-bottom: 4px !important;
       }
 grid_options:
-  columns: full
-  rows: 14
+  rows: auto
+  columns: 36
 
 # ------------------------------------------------------------------------------
 # 2. Latest TV Episode Hero Banner (Cinematic Backdrop + Floating Poster)
 # ------------------------------------------------------------------------------
 type: markdown
 content: >
-  <table width="100%" border="0" cellpadding="0" cellspacing="0" style="width: 100%; height: 100%; border-collapse: collapse; background: transparent; margin: 0; padding: 0; box-sizing: border-box;"><tr><td width="80" align="center" valign="middle" style="vertical-align: middle; width: 80px; min-width: 80px; max-width: 80px; padding: 0 14px 0 0; box-sizing: border-box;"><img src="{{ state_attr('sensor.jellyha_latest_episode', 'series_poster_url') or state_attr('sensor.jellyha_latest_episode', 'poster_url') }}" width="76" height="114" alt="Poster" style="width: 76px; max-width: 76px; height: 114px; max-height: 114px; object-fit: cover; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.85); border: 1.5px solid rgba(255,255,255,0.35); display: block;"></td><td valign="middle" style="vertical-align: middle; padding: 0; box-sizing: border-box; overflow-wrap: break-word;"><div style="font-size: 0.75rem; font-weight: 700; color: rgba(255,255,255,0.75); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 2px; text-shadow: 0 2px 6px rgba(0,0,0,0.95); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ state_attr('sensor.jellyha_latest_episode', 'series_name') }}</div><h1 style="margin: 0 0 4px 0; font-size: clamp(0.95rem, 2.5vw, 1.35rem); font-weight: 800; line-height: 1.15; color: #ffffff; text-shadow: 0 2px 10px rgba(0,0,0,0.95); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ state_attr('sensor.jellyha_latest_episode', 'title') }}</h1><div style="margin: 0 0 6px 0; display: flex; align-items: center; flex-wrap: wrap; gap: 6px;"><span class="badge-primary" style="background: var(--primary-color); color: white; font-size: 0.7rem; font-weight: 700; padding: 2px 7px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.5); margin-right: 6px;">S{{ '%02d' % (state_attr('sensor.jellyha_latest_episode', 'season') or 1) }}E{{ '%02d' % (state_attr('sensor.jellyha_latest_episode', 'episode') or 1) }}</span>&nbsp;<span class="badge-subtle" style="background: rgba(255,255,255,0.2); color: #ffffff; font-size: 0.7rem; font-weight: 700; padding: 2px 6px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.3); margin-right: 6px;">{{ state_attr('sensor.jellyha_latest_episode', 'resolution') }}</span>&nbsp;<span class="badge-text" style="color: #ffffff; text-shadow: 0 1px 4px rgba(0,0,0,0.9); font-size: 0.78rem; margin-right: 6px;">{{ state_attr('sensor.jellyha_latest_episode', 'year') }} •</span>&nbsp;<span class="badge-rating" style="color: #f5a623; text-shadow: 0 1px 4px rgba(0,0,0,0.9); font-size: 0.78rem; font-weight: 700;">★ {{ state_attr('sensor.jellyha_latest_episode', 'rating') }}</span></div><p style="margin: 0; line-height: 1.35; font-size: 0.82rem; color: rgba(255,255,255,0.9); text-shadow: 0 2px 6px rgba(0,0,0,0.95); overflow-wrap: break-word; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">{{ state_attr('sensor.jellyha_latest_episode', 'overview') }}</p></td></tr></table>
+  <table width="100%" border="0" cellpadding="0" cellspacing="0" style="width: 100%; height: 100%; border-collapse: collapse; background: transparent; margin: 0; padding: 0; box-sizing: border-box;"><tr><td width="80" align="center" valign="middle" style="vertical-align: middle; width: 80px; min-width: 80px; max-width: 80px; padding: 0 14px 0 0; box-sizing: border-box;"><img src="{{ state_attr('sensor.jellyha_latest_episode', 'series_poster_url') or state_attr('sensor.jellyha_latest_episode', 'poster_url') }}" width="76" height="114" alt="Poster" style="width: 76px; max-width: 76px; height: 114px; max-height: 114px; object-fit: cover; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.85); border: 1.5px solid rgba(255,255,255,0.35); display: block;"></td><td valign="middle" style="vertical-align: middle; padding: 0; box-sizing: border-box; overflow-wrap: break-word;"><div style="font-size: 0.75rem; font-weight: 700; color: rgba(255,255,255,0.75); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 2px; text-shadow: 0 2px 6px rgba(0,0,0,0.95); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ state_attr('sensor.jellyha_latest_episode', 'series_name') }}</div><h1 style="margin: 0 0 4px 0; font-size: clamp(0.95rem, 2.5vw, 1.35rem); font-weight: 800; line-height: 1.15; color: #ffffff; text-shadow: 0 2px 10px rgba(0,0,0,0.95); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ state_attr('sensor.jellyha_latest_episode', 'title') }}</h1><div style="margin: 0 0 6px 0; line-height: 1.2;">{%- if state_attr('sensor.jellyha_latest_episode', 'season') is not none or state_attr('sensor.jellyha_latest_episode', 'episode') is not none -%}<b class="badge-primary" style="background: var(--primary-color, #03a9f4); color: white; font-size: 0.7rem; font-weight: 700; padding: 2px 6px; border-radius: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.4); line-height: 1.2; display: inline-block; margin-right: 8px; margin-bottom: 4px;">S{{ '%02d' % (state_attr('sensor.jellyha_latest_episode', 'season') or 1) }}E{{ '%02d' % (state_attr('sensor.jellyha_latest_episode', 'episode') or 1) }}</b>{%- endif -%}{%- if state_attr('sensor.jellyha_latest_episode', 'resolution') -%}<kbd class="badge-subtle" style="background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.25); color: #ffffff; font-size: 0.7rem; font-weight: 700; padding: 2px 6px; border-radius: 4px; line-height: 1.2; display: inline-block; font-family: inherit; margin-right: 8px; margin-bottom: 4px;">{{ state_attr('sensor.jellyha_latest_episode', 'resolution') }}</kbd>{%- endif -%}{%- if state_attr('sensor.jellyha_latest_episode', 'year') -%}<span class="meta-year" style="color: #ffffff; text-shadow: 0 1px 4px rgba(0,0,0,0.9); font-size: 0.8rem; font-weight: 600; line-height: 1.2; display: inline-block; margin-right: 6px; margin-bottom: 4px;">{{ state_attr('sensor.jellyha_latest_episode', 'year') }}</span>{%- endif -%}{%- if state_attr('sensor.jellyha_latest_episode', 'year') and ((state_attr('sensor.jellyha_latest_episode', 'rating') and (state_attr('sensor.jellyha_latest_episode', 'rating') | float(0)) > 0) or (state_attr('sensor.jellyha_latest_episode', 'genres') and (state_attr('sensor.jellyha_latest_episode', 'genres') | length) > 0)) -%}<i class="meta-dot" style="color: rgba(255,255,255,0.45); font-size: 0.7rem; font-style: normal; line-height: 1; display: inline-block; margin-right: 6px; margin-bottom: 4px;">•</i>{%- endif -%}{%- if state_attr('sensor.jellyha_latest_episode', 'rating') and (state_attr('sensor.jellyha_latest_episode', 'rating') | float(0)) > 0 -%}<mark class="badge-rating" style="background: rgba(245,158,11,0.25); border: 1px solid rgba(245,158,11,0.45); color: #fbbf24; font-size: 0.72rem; font-weight: 700; padding: 1px 6px; border-radius: 4px; line-height: 1.2; display: inline-flex; align-items: center; margin-right: 8px; margin-bottom: 4px;">★ {{ '%.1f' % (state_attr('sensor.jellyha_latest_episode', 'rating') | float) }}</mark>{%- endif -%}{%- for g in (state_attr('sensor.jellyha_latest_episode', 'genres') or [])[:3] -%}<em class="badge-genre" style="background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.18); color: rgba(255,255,255,0.92); font-size: 0.72rem; font-weight: 500; font-style: normal; padding: 1px 6px; border-radius: 4px; line-height: 1.2; text-shadow: 0 1px 2px rgba(0,0,0,0.6); display: inline-block; white-space: nowrap; margin-right: 8px; margin-bottom: 4px;">{{ g }}</em>{%- endfor -%}</div><p style="margin: 0; line-height: 1.35; font-size: 0.82rem; color: rgba(255,255,255,0.9); text-shadow: 0 2px 6px rgba(0,0,0,0.95); overflow-wrap: break-word; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">{{ state_attr('sensor.jellyha_latest_episode', 'overview') }}</p></td></tr></table>
 text_only: true
 card_mod:
   style:
@@ -196,37 +255,86 @@ card_mod:
         border: 1.5px solid rgba(255, 255, 255, 0.35) !important;
         display: block !important;
       }
-      .badge-primary {
+      b, .badge-primary {
         background: var(--primary-color, #03a9f4) !important;
         color: white !important;
         font-size: 0.7rem !important;
         font-weight: 700 !important;
-        padding: 2px 7px !important;
-        border-radius: 10px !important;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5) !important;
+        padding: 2px 6px !important;
+        border-radius: 4px !important;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4) !important;
         display: inline-block !important;
+        line-height: 1.2 !important;
+        font-family: inherit !important;
+        margin-right: 8px !important;
+        margin-bottom: 4px !important;
       }
-      .badge-subtle {
-        background: rgba(255, 255, 255, 0.2) !important;
+      kbd, .badge-subtle {
+        background: rgba(255, 255, 255, 0.18) !important;
+        border: 1px solid rgba(255, 255, 255, 0.25) !important;
         color: #ffffff !important;
         font-size: 0.7rem !important;
         font-weight: 700 !important;
         padding: 2px 6px !important;
-        border-radius: 10px !important;
-        border: 1px solid rgba(255, 255, 255, 0.3) !important;
+        border-radius: 4px !important;
         display: inline-block !important;
+        line-height: 1.2 !important;
+        font-family: inherit !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+        margin-right: 8px !important;
+        margin-bottom: 4px !important;
       }
-      .badge-text {
+      span, .meta-year {
         color: #ffffff !important;
         text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9) !important;
-        font-size: 0.78rem !important;
+        font-size: 0.8rem !important;
+        font-weight: 600 !important;
+        display: inline-block !important;
+        line-height: 1.2 !important;
+        margin-right: 6px !important;
+        margin-bottom: 4px !important;
       }
-      .badge-rating {
-        color: #f5a623 !important;
-        text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9) !important;
-        font-size: 0.78rem !important;
+      i, .meta-dot {
+        color: rgba(255, 255, 255, 0.45) !important;
+        font-size: 0.7rem !important;
+        font-style: normal !important;
+        display: inline-block !important;
+        line-height: 1 !important;
+        margin-right: 6px !important;
+        margin-bottom: 4px !important;
+      }
+      mark, .badge-rating {
+        background: rgba(245, 158, 11, 0.25) !important;
+        border: 1px solid rgba(245, 158, 11, 0.45) !important;
+        color: #fbbf24 !important;
+        font-size: 0.72rem !important;
         font-weight: 700 !important;
+        padding: 1px 6px !important;
+        border-radius: 4px !important;
+        line-height: 1.2 !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        text-shadow: none !important;
+        margin-right: 8px !important;
+        margin-bottom: 4px !important;
+      }
+      em, .badge-genre {
+        background: rgba(255, 255, 255, 0.12) !important;
+        border: 1px solid rgba(255, 255, 255, 0.18) !important;
+        color: rgba(255, 255, 255, 0.92) !important;
+        font-size: 0.72rem !important;
+        font-weight: 500 !important;
+        font-style: normal !important;
+        padding: 1px 6px !important;
+        border-radius: 4px !important;
+        line-height: 1.2 !important;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6) !important;
+        display: inline-block !important;
+        white-space: nowrap !important;
+        margin-right: 8px !important;
+        margin-bottom: 4px !important;
       }
 grid_options:
-  columns: full
-  rows: 14
+  rows: auto
+  columns: 36
