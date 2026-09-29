@@ -5,7 +5,7 @@ All notable changes to JellyHA will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.5.2]
+## [1.5.2] - 2026-09-29
 
 ### Added
 - **Now Playing Card Ambient Idle Library Showcase (Screensaver & Card Layout)**:
@@ -22,6 +22,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Upgraded the active playback metadata row: replaced plain comma-separated text strings with modern frosted-glass genre pills (`.genre-pill`), subtle bullet separator (`.meta-dot`), and clean release year typography (`.meta-year`).
   - Improved client device line (`.client-line`) with refined contrast, letter spacing, and vertical rhythm.
   - Unified vertical spacing across both active and idle card layouts (5px between title and metadata row, 10px between metadata row and description).
+- **Latest Media Hero Banner Card Examples Modernization**:
+  - Modernized the metadata row in `examples/dashboards/latest_media_hero_card.yaml` for both Movie and TV Episode cards with styled season/episode badges (`b.badge-primary`), subtle resolution pills (`kbd.badge-subtle`), amber star rating pills (`mark.badge-rating`), and frosted-glass genre pills (`em.badge-genre`).
+  - Added dedicated badge margin spacing (`margin-right: 8px`, `margin-bottom: 4px`) across both HTML inline styles and card-mod CSS rules for clean, reliable spacing across all dashboard views.
+  - Updated example dashboard `grid_options` to `rows: auto` and `columns: 36` for modern section layouts.
 
 ### Fixed
 - **Now Playing Idle Poster Crossfade & Transition Stability**:
