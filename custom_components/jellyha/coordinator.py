@@ -616,6 +616,12 @@ class JellyHASessionCoordinator(DataUpdateCoordinator[list[dict[str, Any]]]):
                             chapters = item_details.get("Chapters")
                             if chapters:
                                 s["NowPlayingItem"]["Chapters"] = chapters
+                            if "MediaStreams" in item_details and "MediaStreams" not in s["NowPlayingItem"]:
+                                s["NowPlayingItem"]["MediaStreams"] = item_details["MediaStreams"]
+                            if "MediaSources" in item_details and "MediaSources" not in s["NowPlayingItem"]:
+                                s["NowPlayingItem"]["MediaSources"] = item_details["MediaSources"]
+                            if "Path" in item_details and "Path" not in s["NowPlayingItem"]:
+                                s["NowPlayingItem"]["Path"] = item_details["Path"]
                         except JellyfinApiError as err:
                             _LOGGER.debug("Failed to fetch UserData for item %s: %s", item_id, err)
 
@@ -706,6 +712,12 @@ class JellyHASessionCoordinator(DataUpdateCoordinator[list[dict[str, Any]]]):
                         chapters = item_details.get("Chapters")
                         if chapters:
                             s["NowPlayingItem"]["Chapters"] = chapters
+                        if "MediaStreams" in item_details and "MediaStreams" not in s["NowPlayingItem"]:
+                            s["NowPlayingItem"]["MediaStreams"] = item_details["MediaStreams"]
+                        if "MediaSources" in item_details and "MediaSources" not in s["NowPlayingItem"]:
+                            s["NowPlayingItem"]["MediaSources"] = item_details["MediaSources"]
+                        if "Path" in item_details and "Path" not in s["NowPlayingItem"]:
+                            s["NowPlayingItem"]["Path"] = item_details["Path"]
                     except JellyfinApiError as err:
                         _LOGGER.debug("Failed to fetch UserData for WS item %s: %s", item_id, err)
 
