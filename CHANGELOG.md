@@ -28,6 +28,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Updated example dashboard `grid_options` to `rows: auto` and `columns: 36` for modern section layouts.
 
 ### Fixed
+- **Hassfest Manifest Core Dependency Compliance**:
+  - Removed `aiohttp` from integration `requirements` in `manifest.json` as it is already provided by Home Assistant core.
 - **Now Playing Idle Poster Crossfade & Transition Stability**:
   - Resolved backdrop dimming glitch during slide transitions by replacing CSS `background-image` divs with dedicated hardware-accelerated `<img>` layers.
   - Eliminated text jump jitter by removing redundant `translateY` animation during slide changes.
