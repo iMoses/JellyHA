@@ -28,6 +28,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Updated example dashboard `grid_options` to `rows: auto` and `columns: 36` for modern section layouts.
 
 ### Fixed
+- **Android TV & Fire TV Device Session Matching & Metadata Enrichment (Fixes [#27](https://github.com/zupancicmarko/JellyHA/issues/27), PR [#52](https://github.com/zupancicmarko/JellyHA/pull/52))**:
+  - Added fallback matching by device name (`DeviceName`, `CustomName`, `DeviceCustomName`) in `JellyHADeviceMediaPlayer`, resolving an issue where Android TV, Google TV, and Fire TV clients remained permanently `idle` because client hardware IDs differed from server `/Devices` internal database row IDs.
+  - Prioritized active `session["DeviceId"]` over configured device ID when broadcasting remote control commands, ensuring companion sessions on the same physical client properly receive commands.
+  - Enriched `NowPlayingItem` with `MediaStreams`, `MediaSources`, and `Path` from `item_details` in `JellyHASessionCoordinator`, ensuring video dimensions (`width`, `height`, `aspect_ratio`), HDR dynamic range, and `file_path` attributes are reliably populated across both media players and sensors.
 - **Hassfest Manifest Core Dependency Compliance**:
   - Removed `aiohttp` from integration `requirements` in `manifest.json` as it is already provided by Home Assistant core.
 - **Now Playing Idle Poster Crossfade & Transition Stability**:

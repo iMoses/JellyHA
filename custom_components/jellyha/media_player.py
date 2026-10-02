@@ -764,6 +764,9 @@ class JellyHABasePlaybackMediaPlayer(
             video_attrs = MediaStrategy.extract_video_stream_attributes(item)
             attrs.update(video_attrs)
 
+        if item.get("Path"):
+            attrs["file_path"] = item["Path"]
+
         # Ratings & metadata
         attrs["official_rating"] = item.get("OfficialRating")
         attrs["community_rating"] = item.get("CommunityRating")
@@ -863,7 +866,7 @@ class JellyHABasePlaybackMediaPlayer(
         target_ids = [session["Id"]]
         # Broadcast only to sessions with the exact same device ID. WebOS IDs
         # share an encoded user-agent prefix across unrelated clients.
-        dev_id = getattr(self, "_device_id", None) or session.get("DeviceId") or ""
+        dev_id = session.get("DeviceId") or getattr(self, "_device_id", None) or ""
         if dev_id and self.coordinator.data:
             for s in self.coordinator.data:
                 sid = s.get("Id")
@@ -1169,9 +1172,24 @@ class JellyHADeviceMediaPlayer(JellyHABasePlaybackMediaPlayer):
     def _is_matching_device_session(self, s: dict[str, Any]) -> bool:
         """Check if a session belongs to this device."""
         session_dev_id = s.get("DeviceId") or ""
-        # WebOS identifiers encode the user agent. Multiple unrelated clients
-        # share its prefix, so prefix/name matching merges them incorrectly.
-        return bool(session_dev_id and self._device_id and session_dev_id == self._device_id)
+        # 1. Exact DeviceId match (e.g. web clients, desktop media player)
+        if session_dev_id and self._device_id and session_dev_id == self._device_id:
+            return True
+
+        # 2. Match by device name (case-insensitive) for clients where Jellyfin's
+        # /Devices endpoint assigns an internal database ID instead of the client's DeviceId
+        # (e.g. Android TV, Google TV, Fire TV).
+        session_names = {
+            str(s.get("DeviceName") or "").strip().lower(),
+            str(s.get("CustomName") or "").strip().lower(),
+            str(s.get("DeviceCustomName") or "").strip().lower(),
+        }
+        session_names.discard("")
+        target_name = (self._custom_device_name or "").strip().lower()
+        if target_name and target_name in session_names:
+            return True
+
+        return False
 
     def _get_active_session(self) -> dict[str, Any] | None:
         """Get the active session for this device with stable priority.
