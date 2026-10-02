@@ -614,6 +614,9 @@ class JellyHAUserSensor(CoordinatorEntity[JellyHASessionCoordinator], SensorEnti
                 video_attrs = MediaStrategy.extract_video_stream_attributes(item)
                 attributes.update(video_attrs)
 
+            if item.get("Path"):
+                attributes["file_path"] = item["Path"]
+
             # Title Logic
             if item_type == "Episode":
                 attributes["title"] = item.get("Name")
