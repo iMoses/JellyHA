@@ -240,6 +240,8 @@ export class JellyHANowPlayingCard extends LitElement {
 
         const effectiveClient = attributes.client || (stateObj.attributes as any).app_name || (stateObj.attributes as any).friendly_name || '';
         const clientInfo = (this._config.show_client !== false) ? effectiveClient : '';
+        const deviceInfo = (this._config.show_device_name === true) ? (attributes.device_name || '') : '';
+        const sourceInfo = [...new Set([deviceInfo, clientInfo].filter(Boolean))].join(' · ');
 
         // Media type badge text
         const season = attributes.season !== undefined ? attributes.season : ((stateObj.attributes as any).media_season !== undefined ? (stateObj.attributes as any).media_season : cachedItem?.season);
@@ -348,7 +350,7 @@ export class JellyHANowPlayingCard extends LitElement {
                                             ${genres.map(g => html`<span class="genre-pill">${g}</span>`)}
                                         </div>
                                     ` : nothing}
-                                    ${this._overflowState < 1 && (userName || clientInfo) ? html`<div class="client-line">${userName ? html`<strong>${userName}</strong>` : nothing}${userName && clientInfo ? ' ' : ''}${clientInfo || nothing}</div>` : nothing}
+                                    ${this._overflowState < 1 && (userName || sourceInfo) ? html`<div class="client-line">${userName ? html`<strong>${userName}</strong>` : nothing}${userName && sourceInfo ? ' ' : ''}${sourceInfo || nothing}</div>` : nothing}
                                 </div>
                             </div>
 

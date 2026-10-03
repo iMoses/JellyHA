@@ -29,6 +29,7 @@ const translations: Record<string, Record<string, string>> = {
         'editor.show_rating': 'Show Rating',
         'editor.show_genres': 'Show Genre',
         'editor.show_client': 'Show Jellyfin Client',
+        'editor.show_device_name': 'Show Device Name',
         'editor.show_user': 'Show User',
         'editor.show_time': 'Show Elapsed / Remaining Time',
         'editor.show_background': 'Show Background',
